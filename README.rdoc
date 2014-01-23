@@ -1,0 +1,60 @@
+== README
+
+A multi-tenant application is normally used to provide a way in which multiple users can have their own instances of a common codebase. But if user instances primarily differ according to front-end configurations, a simpler Rails setup could do the trick without having to deal with multitenancy.
+
+The best way to get acquainted with how this might work is to test this out yourself through this example application.
+
+=== Local Setup
+
+    git clone ....
+    cd path/to/repo
+    bundle
+    rake db:migrate
+    rails s
+    # go to localhost:3000/
+
+Front-end assets are divided according to the following:
+
+* **_platform** assets, which apply to the App Store page, App Info page, Install page, and the Create/Edit App Info pages.
+* **app-specific assets**, e.g., assets belonging to the Budget Explorer app, assets belonging to the Crime Explorer app, etc.
+* **base** assets, which apply across the board. These don't have to be used.
+
+Separate template layouts are used for the "Platform" and for applications, to allow for custom site titles that are specific to each customer application.
+
+=== Models
+
+An **app** (Budget Explorer, Crime Explorer)
+
+has many **customers** (City of ABC, County X, State of XYZ, etc.)
+
+who then install **customer apps**, which have assets (JS, CSS, HTML) which are associated with the **app** they choose to install. Installing a customer app requires specifying certain settings (Site Title, Slug, Short Description). While we're at it, we might as well throw in customer app specific **configurations** (custom messages, logo placement, dataset UIDs, etc.). The argument being is that this application will need to handle sensitive configurable information, such as what dataset API endpoints, Site Title, etc. anyway, so we might as well place configuration settings as well. Secure these admin privileges with some basic HTTP authentication.
+
+
+**Custom Install Settings and Configurations** include things like:
+
+* Site Title
+* Site Name
+* Logo (image)
+* Favicon (image)
+* Socrata dataset UIDs (e.g., hqzt-e587)
+* Custom Text, e.g. an About Me
+* etc.
+
+but they do NOT include:
+
+* The actual data used in the app (e.g., budget data, spending data, etc.)
+
+
+=== Application Requirements/Assumptions
+
+Configuration information (dataset UIDs, logos, Site Title, etc.) is stored within the Rails application itself in a simple backend (Postgresql). Basic HTTP Authentication will be required to log users in.
+
+This Application is built for turnkey "deployment" of each "application". It is unknown yet how procurement should be handled. We may eventually turn to a Partner Solution, or anticipate the arrival of a Check before handing over a non-trial version of the application (placing a giant "Trial Version Only: This Application has not been registered." banner over it in the meantime. We can then lift this warning when payment has been received.)
+
+The benefits of this approach is that it is a lightweight solution to providing multiple front-ends with a simple, consistent backend for launching multiple apps for multiple customers, much like a store front, without dealing with multiple Rails Engines.
+
+Much of the heavy lifting is assumed to be delegated to the front-end. Single-page applications are an ideal fit for this approach. Multi-paged applications that want their own scoped Rails controllers and Rails/server-side data models are not.
+
+
+
+

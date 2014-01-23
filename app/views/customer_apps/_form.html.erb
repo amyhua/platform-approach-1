@@ -1,0 +1,48 @@
+<%= simple_form_for(@customer_app) do |f| %>
+  <% if @customer_app.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@customer_app.errors.count, "error") %> prohibited this customer_app from being saved:</h2>
+
+      <ul>
+      <% @customer_app.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="field">
+    <%= f.association :app, label: 'App to Install: ' %>
+  </div>
+  <div class="field">
+    <%= f.label :site_title %><br>
+    <%= f.text_field :site_title %>
+  </div>
+  <div class="field">
+    <%= f.label 'Custom App Name' %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+  <%= f.input :slug, hint: 'Find your newly installed app at www.socrataapps/your-slug-here' %>
+    </div>
+  <div class="field">
+    <%= f.label :custom_url %><br>
+    <%= f.text_field :custom_url, placeholder: 'http://...' %><br>
+    <small>What custom URL will you eventually want to map this app to? It can be a specific subdomain to your site. <br>Note that this app cannot be routed to a path of your site (e.g., yoursite.com/thisapp is not allowed, but thisapp.yoursite.com is allowed).</small>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :contact_name %><br>
+    <%= f.text_field :contact_name %>
+  </div>
+  <div class="field">
+    <%= f.label :contact_email %><br>
+    <%= f.text_field :contact_email %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

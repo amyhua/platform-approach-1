@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<h2>This is your app!</h2>
+<p>It has a customer layout that is special to this Customer application. Look, the Site Title has been changed!</p>
+<p>Assets (JS, CSS) are also organized and cleanly separated by application.</p>
+<p>
+  <strong>Site title:</strong>
+  <%= @customer_app.site_title %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @customer_app.name %>
+</p>
+
+<p>
+  <strong>Slug:</strong>
+  <%= @customer_app.slug %>
+</p>
+
+<p>
+  <strong>Custom url:</strong>
+  <%= @customer_app.custom_url %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @customer_app.description %>
+</p>
+
+<p>
+  <strong>Contact name:</strong>
+  <%= @customer_app.contact_name %>
+</p>
+
+<p>
+  <strong>Contact email:</strong>
+  <%= @customer_app.contact_email %>
+</p>
+
+
+<%= link_to 'Edit', edit_customer_app_path(@customer_app) %>

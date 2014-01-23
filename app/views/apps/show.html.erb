@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @app.name %>
+</p>
+
+<p>
+  <strong>Slug:</strong>
+  <%= @app.slug %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @app.description %>
+</p>
+
+<p>
+  <strong>Detailed Summary:</strong>
+  <%= simple_format @app.detailed_summary %>
+</p>
+
+Here are a list of customers who have this app:
+
+
+<% for ca in @app.customer_apps %>
+<p>
+<strong><%= link_to ca.name, customer_app_path(ca) %></strong>
+<em><%= ca.custom_url %></em>
+</p>
+
+<% end %>
+
+
+<%= link_to 'Install this App!', new_customer_app_path(app_id: @app.id), class: 'btn-install' %>
+
+
+
+<%= link_to 'Edit', edit_app_path(@app) %> |
+<%= link_to 'Back', apps_path %>
