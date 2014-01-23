@@ -1,12 +1,12 @@
 == README
 
-A multi-tenant application is normally used to provide a way in which multiple users can have their own instances of a common codebase. But if user instances primarily differ according to front-end configurations, a simpler Rails setup could do the trick without having to deal with multitenancy.
+A multi-tenant application is normally used to provide a way in which multiple users can have their own instances of a common codebase. But if user instances primarily differ according to front-end assets and flat-file configurations, a simpler Rails setup could do the trick without having to deal with multitenancy.
 
 The best way to get acquainted with how this might work is to test this out yourself through this example application.
 
 === Local Setup
 
-    git clone ....
+    git clone https://github.com/amyhua/platform-approach-1.git
     cd path/to/repo
     bundle
     rake db:migrate
@@ -15,9 +15,11 @@ The best way to get acquainted with how this might work is to test this out your
 
 Front-end assets are divided according to the following:
 
-* **_platform** assets, which apply to the App Store page, App Info page, Install page, and the Create/Edit App Info pages.
-* **app-specific assets**, e.g., assets belonging to the Budget Explorer app, assets belonging to the Crime Explorer app, etc.
-* **base** assets, which apply across the board. These don't have to be used.
+* *_platform* assets, which apply to the App Store page, App Info page, Install page, and the Create/Edit App Info pages.
+
+* *app-specific assets*, e.g., assets belonging to the Budget Explorer app, assets belonging to the Crime Explorer app, etc.
+
+* *base* assets, which apply across the board. These don't have to be used.
 
 Separate template layouts are used for the "Platform" and for applications, to allow for custom site titles that are specific to each customer application.
 
